@@ -1,2 +1,30 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+
+  <div class="col-md-3">
+
+    <div>
+      <h3><%= @user.name %></h3>
+      <%= image_tag @user.get_profile_image(100,100) %>
+    </div>
+
+<!--form_with入れる投稿画面-->
+  </div>
+
+  <div class="col-md-8 offset-md-1">
+<!-- ユーザーの投稿一覧 -->
+    ああああああああ
+
+    <% @books.each do |book| %>
+    <div>
+      <%= link_to books_path(book.id) do %>
+        <%= image_tag book.get_image %>
+      <% end %>
+      <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
+      <p>説明：<%= book.caption %></p>
+      <p>ユーザーネーム：<%= book.user.name %></p>
+      <% end %>
+    </div>
+  </div>
+  </div>
+</div>
