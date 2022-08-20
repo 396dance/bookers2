@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Bookers2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -28,15 +27,17 @@
             <ul class="navbar-nav ml-auto">
 
             <% if user_signed_in? %>
-              </ul>
                 <li>
-                  <!--<%= link_to 'マイページ', user_path(current_user.id) %>-->
-                  <a class="nav-link text-light" href="/users/38023">
-                  <i class="fas fa-home"></i> Home</a>
+                  <%= link_to user_path(current_user.id), class:'nav-link text-light' do %>
+                    <i class="fas fa-home"></i>Home
+                  <% end %>
                 </li>
                 <li>
-                  <a class="nav-link text-light" href="/users">
-                  <i class="fas fa-users"></i> Users</a>
+                  <%= link_to '/users', class:'nav-link text-light' do %>
+                    <i class="fas fa-users"></i>Users
+                  <% end %>
+                  <!--<a class="nav-link text-light" href="/users">-->
+                  <!--<i class="fas fa-users"></i>Users</a>-->
                 </li>
                 <li>
                   <a class="nav-link text-light" href="/books">
@@ -46,7 +47,6 @@
                   <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
                   <i class="fas fa-sign-out-alt"></i> Log out</a>
                 </li>
-              </ul>
               <!--<li>-->
                 <!--<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>-->
               <!--</li>-->
@@ -69,6 +69,7 @@
                 <i class="fas fa-sign-in-alt"></i> Log in</a>
               </li>
             <% end %>
+            </ul>
         </div>
       </nav>
     </header>
