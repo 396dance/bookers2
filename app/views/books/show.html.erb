@@ -1,2 +1,6 @@
 <h1>Bookの詳細ページ</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+
+
+<% if @book.user == current_user %>
+  <%= link_to "Destroy", user_path(current_user.id), method: :delete %>
+<% end %>

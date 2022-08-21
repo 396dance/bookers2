@@ -1,11 +1,15 @@
 
-<table class="table table-striped">
-  <h1>投稿一覧</h1>
 
-  <% @books.each do |book| %>
+    <!-- ユーザーの投稿一覧 -->
+    <div>
+      <h1>投稿一覧</h1>
 
-    <p>タイトル</p>
-    <span><%= book.title %></span>
+      <% @books.each do |book| %>
 
-  <% end %>
-</table>
+        <p>タイトル</p>
+        <span><%= book.title %></span>
+
+      <% end %>
+    </div>
+
+
