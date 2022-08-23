@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  # before_action :correct_user, only: [:edit, :update]
+
   def index
     @book = Book.new
     @users = User.all
@@ -16,12 +18,21 @@ class UsersController < ApplicationController
   def edit
     # userテーブルにあるidが1のレコードを取得とか
     @user = User.find(params[:id])
+    if @user == current_user
+      render :edit
+    else
+      redirect_to user_path(current_user)
+    end
   end
 
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(user.id)
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+      flash[:success] = "You have updated user successfully."
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -34,4 +45,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
+
+  # def correct_user
+  #   @book = Book.find(params[:id])
+  #   @user = @book.user
+  #   redirect_to(books_path) unless @user == corrent_user
+  # end
+
 end

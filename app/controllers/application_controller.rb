@@ -1,12 +1,15 @@
 class ApplicationController < ActionController::Base
   # ログイン認証が済んでいない状態でトップページ以外にアクセスしてもログイン画面に戻る
-  before_action :authenticate_user!, except: [:top]
+  before_action :authenticate_user!, except: [:top, :about]
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # サインインしたらどのページに飛ぶか指定するdeviceのメソッド
   def after_sign_in_path_for(resource)
     user_path(current_user)
   end
+  
+  
 
   protected
 
