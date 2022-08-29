@@ -21,10 +21,7 @@
           </tbody>
         </table>
         <!--<div class="button">自分のプロフィールを編集する画面に飛ぶボタン</div>-->
-        <%= link_to edit_user_path(@user.id), class:'btn btn-outline-secondary btn-block' do %>
-          <i class="fas fa-user-cog"></i>
-        <% end %>
-
+        
         <!--form_with入れる投稿画面-->
         <h2>New book</h2>
           <%= form_with model: @book do |f| %>
