@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @book = Book.new
     @users = User.all
     @user = current_user
+    @users = User.find(params[:id])
     # @books = Book.all
   end
 
@@ -13,6 +14,8 @@ class UsersController < ApplicationController
     # bookモデルの情報を投稿するための投稿フォーム作成のために空のオブジェクト生成
     @book = Book.new
     @books = @user.books
+    # @following_users = @user.following_user
+    # @follower_users = @user.follower_user
   end
 
   def edit
@@ -41,15 +44,23 @@ class UsersController < ApplicationController
     redirect_to '/books'
   end
 
+  # # フォロー一覧画面
+  # def follows
+  # user = User.find(params[:id])
+  # @users = user.following_user.page(params[:page]).per(3).reverse_order
+  # end
+
+  # # フォロワー一覧画面
+  # def followers
+  #   user = User.find(params[:id])
+  # @users = user.follower_user.page(params[:page]).per(3).reverse_order
+  # end
+
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
   end
 
-  # def correct_user
-  #   @book = Book.find(params[:id])
-  #   @user = @book.user
-  #   redirect_to(books_path) unless @user == corrent_user
-  # end
+
 
 end
